@@ -1,13 +1,17 @@
-package spotify
+package Spotify
 
-//Client for sending authenticated requests
-type Client struct {
-	Token string
+type ClientStruct struct {
+	Token   string
+	Artists ArtistStruct
+	Tracks  TrackStruct
 }
 
-//New functions generates a Client
-func New(token string) Client {
-	return Client{
-		Token: token,
+func Client(token string) ClientStruct {
+
+	return ClientStruct{
+		Token:   token,
+		Artists: Artist(token),
+		Tracks:  Tracks(token),
 	}
+
 }

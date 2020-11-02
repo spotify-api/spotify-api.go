@@ -1,4 +1,4 @@
-package Spotify
+package spotify
 
 type ArtistStruct struct {
 	Get func(id string) (ArtistSchema, error)

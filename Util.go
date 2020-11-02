@@ -1,10 +1,11 @@
-package Spotify
+package spotify
 
 import (
 	"encoding/json"
 	"errors"
 	"io/ioutil"
 	"net/http"
+	"strconv"
 )
 
 type FetchOptions struct {
@@ -30,7 +31,7 @@ func fetch(options FetchOptions, structure interface{}) error {
 		fetchErr = errors.New("Unexpected Error: Request failed")
 	}
 	if res.StatusCode != 200 {
-		fetchErr = errors.New("Unexpected Error: Probably failiure of api!")
+		fetchErr = errors.New("Spotify API Error ("+strconv.Itoa(res.StatusCode)+") : " + cleanResponseCode(res.StatusCode))
 	}
 
 	jsonErr := json.Unmarshal(body, structure)
@@ -40,3 +41,18 @@ func fetch(options FetchOptions, structure interface{}) error {
 	}
 	return fetchErr
 }
+
+func cleanResponseCode(code int) string {
+	knownCodes := []int{201,202,204,304,400,401,403,404,429,500,502,503}
+	responses := []string{"Created","Accepted","No Content","Not Modified","Bad Request","Unauthorized","Forbidden","Not Found","Too Many Requests","Internal Server Error","Bad Gateway","Service Unavailable"}
+	index := indexOf(code , knownCodes)
+	return responses[index]
+}
+func indexOf(element int, data []int) (int) {
+	for i, l := range data {
+		if element == l {
+			return i
+		}
+	}
+	return -1 //no match
+ }

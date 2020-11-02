@@ -1,4 +1,4 @@
-package Spotify
+package spotify
 
 type ClientStruct struct {
 	Token   string

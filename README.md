@@ -21,7 +21,7 @@ To get the client simply import the module and call the `New` function
 import (
  "github.com/spotify-api/spotify-api.go"
 )
-client := spotify.New("token") //the oauth token
+client := spotify.Client("token") //the oauth token
 ```
 
 # Search
@@ -31,7 +31,7 @@ import (
  "fmt"
  "github.com/spotify-api/spotify-api.go"
 )
-client := spotify.New("token") //the oauth token
+client := spotify.Client("token") //the oauth token
 tracks,err := client.SearchTracks("oh my god by alec benjamin")
 if err != nil {
  fmt.Println("ERROR: " + err) //incase if there is an Error

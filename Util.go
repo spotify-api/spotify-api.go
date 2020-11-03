@@ -31,7 +31,7 @@ func fetch(options FetchOptions, structure interface{}) error {
 		fetchErr = errors.New("Unexpected Error: Request failed")
 	}
 	if res.StatusCode != 200 {
-		fetchErr = errors.New("Spotify API Error ("+strconv.Itoa(res.StatusCode)+") : " + cleanResponseCode(res.StatusCode))
+		fetchErr = errors.New("Spotify API Error ("+strconv.Itoa(res.StatusCode)+") : " + CleanResponseCode(res.StatusCode))
 	}
 
 	jsonErr := json.Unmarshal(body, structure)
@@ -41,8 +41,8 @@ func fetch(options FetchOptions, structure interface{}) error {
 	}
 	return fetchErr
 }
-
-func cleanResponseCode(code int) string {
+//CleanResponseCode cleans the response code
+func CleanResponseCode(code int) string {
 	knownCodes := []int{201,202,204,304,400,401,403,404,429,500,502,503}
 	responses := []string{"Created","Accepted","No Content","Not Modified","Bad Request","Unauthorized","Forbidden","Not Found","Too Many Requests","Internal Server Error","Bad Gateway","Service Unavailable"}
 	index := indexOf(code , knownCodes)

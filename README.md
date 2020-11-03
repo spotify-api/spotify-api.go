@@ -1,5 +1,5 @@
 # Note
-> This pacakge is currently under developemnt so there might be some functions not working or not complete.
+> This pacakge is currently under developement so there might be some functions not working or not complete.
 > Thank You!
 <div align="center">
   <img src="https://media.discordapp.net/attachments/736466510888960020/760853915876327464/Sa.png?width=718&height=275"><br>
